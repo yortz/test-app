@@ -15,7 +15,7 @@ gem 'dm-validations'
 
 # Testing requirements
 only :test do
-  gem 'mocha', :only => :testing
-  gem 'bacon', :only => :testing
-  gem 'rack-test', :require_as => 'rack/test', :only => :testing
+  gem 'mocha'
+  gem 'bacon'
+  gem 'rack-test', :require_as => 'rack/test'
 end
