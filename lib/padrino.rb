@@ -64,6 +64,7 @@ module Padrino
       base.set :markup, true
       base.set :render, true
       base.set :mailer, true
+      base.set :router, true
       
       # We need to load the class
       super
@@ -84,6 +85,7 @@ module Padrino
       base.register SinatraMore::MarkupPlugin if base.markup?
       base.register SinatraMore::RenderPlugin if base.render?
       base.register SinatraMore::MailerPlugin if base.mailer?
+      base.register SinatraMore::RoutingPlugin if base.router?
       
       # Require all helpers
       Dir[base.root + "/helpers/*.rb"].each do |file|

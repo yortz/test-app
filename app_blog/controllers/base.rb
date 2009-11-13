@@ -1,6 +1,7 @@
 class BaseRoutes < Padrino::RouteController
+  map(:index).to("")
 
-  get "" do
+  get :index do
     [
       "Hey? This is the blog!!!!", "",
       options.app_name, options.app_file, options.public, options.views, options.images_path
