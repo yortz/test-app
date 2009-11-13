@@ -3,21 +3,22 @@ require 'rubygems'
 require 'sinatra/base'
 require File.dirname(__FILE__) + '/boot'
 
-module DeanMartin
+module Padrino
   
   class Application < Sinatra::Base
     
-    # Defines basic application settings
-    set :app_file, Proc.new { root_path("#{app_name}/app.rb") }
-    set :images_path, Proc.new { public + "/images" }
-    set :default_builder, 'StandardFormBuilder'
-    set :environment, RACK_ENV if defined?(RACK_ENV)
-    set :logging, true
-    
     def self.inherited(base)
       
-      # We need to set the app_name
+      # Defines basic application settings
       base.set :app_name, base.to_s.underscore
+      base.set :app_file, root_path("#{base.app_name}/app.rb")
+      base.set :images_path, base.public + "/images"
+      base.set :default_builder, 'StandardFormBuilder'
+      base.set :environment, RACK_ENV
+      base.set :logging, true
+      base.set :markup, true
+      base.set :render, true
+      base.set :mailer, true
       
       # We need to load the class
       super
@@ -35,10 +36,9 @@ module DeanMartin
       end
       
       # Includes all necessary sinatra_more helpers
-      base.register SinatraMore::MarkupPlugin
-      base.register SinatraMore::RenderPlugin
-      base.register SinatraMore::MailerPlugin
-      base.register SinatraMore::WardenPlugin
+      base.register SinatraMore::MarkupPlugin if base.markup?
+      base.register SinatraMore::RenderPlugin if base.render?
+      base.register SinatraMore::MailerPlugin if base.mailer?
       
       # Require all helpers
       Dir[base.root + "/helpers/*.rb"].each do |file|

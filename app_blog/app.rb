@@ -1,2 +1,2 @@
-class AppBlog < DeanMartin::Application
+class AppBlog < Padrino::Application
 end

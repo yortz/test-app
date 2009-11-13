@@ -1,2 +1,2 @@
-class AppWebsite < DeanMartin::Application
+class AppWebsite < Padrino::Application
 end
