@@ -6,12 +6,11 @@ require File.dirname(__FILE__) + '/config/boot.rb'
 # $stdout.reopen(log)
 # $stderr.reopen(log)
 
+# Mounting separate applications
 Dir[File.dirname(__FILE__) + '/app_*/app.rb'].each do |file| 
   require file
-  klass_name = File.basename(File.dirname(file)).gsub(/app_/, "")
-  klass      = "App#{klass_name.classify}".constantize
+  klass_name     = File.basename(File.dirname(file)).gsub(/app_/, "")
+  app_klass      = "App#{klass_name.classify}".constantize
   puts ">> Loading App #{klass_name} on: /#{klass_name}"
-  map "/#{klass_name}" do
-    run klass
-  end
+  map("/#{klass_name}") { run app_klass }
 end
