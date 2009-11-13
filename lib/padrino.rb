@@ -1,17 +1,13 @@
 require 'sinatra/base'
 
 # Defines our PADRINO_ENV
-PADRINO_ENV = ENV["PADRINO_ENV"] ||= ENV["RACK_ENV"] ||= "development"     unless defined? PADRINO_ENV
+PADRINO_ENV = ENV["PADRINO_ENV"] ||= ENV["RACK_ENV"] ||= "development" unless defined?(PADRINO_ENV)
 
 module Padrino
-  
-  class PadrinoError; end
   
   class << self
     
     def boot!
-      raise PadrinoError, "You must provide a correct PADRINO_ROOT before start" unless defined?(PADRINO_ROOT)
-      raise PadrinoError, "You must provide a correct PADRINO_ENV before start"  unless defined?(PADRINO_ENV)
       
       # Attempts to require all dependencies with bundler
       begin
