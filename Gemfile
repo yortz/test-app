@@ -2,6 +2,7 @@ clear_sources
 source 'http://gemcutter.org'
 
 # Base requirements
+gem 'sinatra',     :require_as => 'sinatra/base'
 gem 'sinatra_more'
 gem 'rack-flash'
 gem 'warden'
