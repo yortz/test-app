@@ -1,4 +1,4 @@
-class AppWebsite
+class BaseRoutes < Padrino::RouteController
 
   get "" do
     [

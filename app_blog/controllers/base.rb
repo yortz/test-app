@@ -1,4 +1,4 @@
-class AppBlog
+class BaseRoutes < Padrino::RouteController
 
   get "" do
     [

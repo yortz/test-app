@@ -52,10 +52,8 @@ module Padrino
     end
   end
   
-  class Application < Sinatra::Base
-    
+  class Application < Sinatra::Base    
     def self.inherited(base)
-      
       # Defines basic application settings
       base.set :app_name, base.to_s.underscore
       base.set :app_file, Padrino.root("#{base.app_name}/app.rb")
@@ -94,6 +92,17 @@ module Padrino
         klass_name = File.basename(file, '.rb').classify
         helpers "#{klass_name}Helper".constantize
       end
+      
+      # TODO: Find a better way (?) I admit this has a certain bad smell to it, I just wanted to get the routes file to look like
+      # Define to make Padrino::RouteController work properly
+      # class SomeRoutes < Padrino::RouteController
+      #   ...
+      # end
+      self.class_eval <<-ROUTES
+        class ::Padrino::RouteController
+          def self.method_missing(name, *args, &block); #{base}.send(name, *args, &block); end
+        end
+      ROUTES
       
       # Search our controllers
       Dir[base.root + "/controllers/*.rb"].each do |file|
