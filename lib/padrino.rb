@@ -73,64 +73,87 @@ module Padrino
     end
   end
   
-  class Application < Sinatra::Base    
-    def self.inherited(base)
-      # Defines basic application settings
-      base.set :app_name, base.to_s.underscore.to_sym
-      base.set :app_file, Padrino.root("#{base.app_name}/app.rb")
-      base.set :images_path, base.public + "/images"
-      base.set :default_builder, 'StandardFormBuilder'
-      base.set :environment, PADRINO_ENV
-      base.set :logging, true
-      base.set :markup, true
-      base.set :render, true
-      base.set :mailer, true
-      base.set :router, true
-      
-      # We need to load the class
-      super
-      
-      # Required middleware
-      base.use Rack::Session::Cookie
-      base.use Rack::Flash
-      
-      # Requires the initializer modules which configure specific components
-      Dir[Padrino.root + '/config/initializers/*.rb'].each do |file|
-        # Each initializer file contains a module called 'XxxxInitializer' (i.e HassleInitializer)
-        require file
-        file_class = File.basename(file, '.rb').classify
-        base.register "#{file_class}Initializer".constantize
+  # Padrino delegator is a class usefull for delegate certain methods to another class
+  # 
+  # Usually we delegate :get, :post, :delete, :put etc from RouteController to their Sinatra Application
+  # We can delegate also for example route mapping methods (:map) from i.e. Padrino::Routing to their Sinatra Application
+  # 
+  class Delegator
+    class << self
+      def inherited(base)
+        @base = base
       end
-      
-      # Includes all necessary sinatra_more helpers
-      base.register SinatraMore::MarkupPlugin if base.markup?
-      base.register SinatraMore::RenderPlugin if base.render?
-      base.register SinatraMore::MailerPlugin if base.mailer?
-      base.register SinatraMore::RoutingPlugin if base.router?
-      
-      # Require all helpers
-      Dir[base.root + "/helpers/*.rb"].each do |file|
-        # Each file contains a module called 'XxxxHelper' (i.e ViewHelper)
-        Padrino.load_dependencies(file)
-        klass_name = File.basename(file, '.rb').classify
-        helpers "#{klass_name}Helper".constantize
+
+      def delegate(method_name)
+        @method_name = method_name
+        self
       end
-      
-      # TODO: Find a better way (?) I admit this has a certain bad smell to it, I just wanted to get the routes file to look like
-      # Define to make Padrino::RouteController work properly
-      # class SomeRoutes < Padrino::RouteController
-      #   ...
-      # end
-      self.class_eval <<-ROUTES
-        class ::Padrino::RouteController
-          def self.method_missing(name, *args, &block); #{base}.send(name, *args, &block); end
+    
+      def to(klass)
+        (class << self; self; end).class_eval <<-RUBY
+          def #{@method_name}(*args, &b); #{klass}.send(#{@method_name.inspect}, *args, &b); end
+          private #{@method_name.inspect}
+        RUBY
+      end
+    end
+  end
+  
+  class Application < Sinatra::Base
+    
+    class << self
+      def inherited(base)
+        # Defines basic application settings
+        base.set :app_name, base.to_s.underscore.to_sym
+        base.set :app_file, Padrino.root("#{base.app_name}/app.rb")
+        base.set :images_path, base.public + "/images"
+        base.set :default_builder, 'StandardFormBuilder'
+        base.set :environment, PADRINO_ENV
+        base.set :logging, true
+        base.set :markup, true
+        base.set :render, true
+        base.set :mailer, true
+        base.set :router, true
+        
+        # We need to load the class
+        super
+        
+        # Required middleware
+        base.use Rack::Session::Cookie
+        base.use Rack::Flash
+        
+        # Requires the initializer modules which configure specific components
+        Dir[Padrino.root + '/config/initializers/*.rb'].each do |file|
+          Padrino.load_dependencies(file)
+          file_class = File.basename(file, '.rb').classify
+          base.register "#{file_class}Initializer".constantize
         end
-      ROUTES
-      
-      # Search our controllers
-      Dir[base.root + "/controllers/*.rb"].each do |file|
-        # TODO: Better way todo that
-        Padrino.load_dependencies(file)
+        
+        # Includes all necessary sinatra_more helpers if required
+        base.register SinatraMore::MarkupPlugin  if base.markup?
+        base.register SinatraMore::RenderPlugin  if base.render?
+        base.register SinatraMore::MailerPlugin  if base.mailer?
+        base.register SinatraMore::RoutingPlugin if base.router?
+        
+        # Require all helpers
+        Dir[base.root + "/helpers/*.rb"].each do |file|
+          Padrino.load_dependencies(file)
+          klass_name = File.basename(file, '.rb').classify
+          helpers "#{klass_name}Helper".constantize
+        end
+        
+        # We build for base their RouteController
+        base.class_eval("class ::Padrino::RouteController < Delegator; end")
+        
+        [ # We delegate certain methods to our controller
+         :get, :put, :post, :delete, :head, :template, :layout,
+         :before, :after, :error, :not_found, :mime_type, :map,
+         :development?, :test?, :production?, :use_in_file_templates!, :helpers
+        ].each { |method_name| RouteController.delegate(method_name).to(base) }
+        
+        # Search our controllers
+        Dir[base.root + "/controllers/*.rb"].each do |file|
+          Padrino.load_dependencies(file)
+        end
       end
     end
   end
