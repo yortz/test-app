@@ -1,3 +1,7 @@
-module ViewHelper
- # Basic helpers can be defined here
+AppBlog::helpers do
+  
+  def my_helper
+    "this is an helper"
+  end
+  
 end

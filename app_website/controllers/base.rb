@@ -1,4 +1,5 @@
-class BaseRoutes < Padrino::RouteController
+AppWebsite::controllers do
+  
   map(:index).to("")
   map(:test).to("/test")
   

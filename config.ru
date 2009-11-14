@@ -6,14 +6,8 @@ require File.dirname(__FILE__) + '/config/boot.rb'
 # $stdout.reopen(log)
 # $stderr.reopen(log)
 
-# Mounting separate applications
-# TODO: requiring shouldnt have to be done manually or assume the application name
-Dir[File.dirname(__FILE__) + '/app_*/app.rb'].each do |file| 
-  require file
-end
-
-Padrino.activate_app("app_blog").to("/blog")
-Padrino.activate_app("app_website").to("/website")
+Padrino.mount("app_blog").to("/blog")
+Padrino.mount("app_website").to("/website")
 
 Padrino.mounted_apps.each do |app|
   map app.path do
