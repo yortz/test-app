@@ -7,10 +7,17 @@ require File.dirname(__FILE__) + '/config/boot.rb'
 # $stderr.reopen(log)
 
 # Mounting separate applications
+# TODO: requiring shouldnt have to be done manually or assume the application name
 Dir[File.dirname(__FILE__) + '/app_*/app.rb'].each do |file| 
   require file
-  klass_name     = File.basename(File.dirname(file)).gsub(/app_/, "")
-  app_klass      = "App#{klass_name.classify}".constantize
-  puts ">> Loading App #{klass_name} on: /#{klass_name}"
-  map("/#{klass_name}") { run app_klass }
+end
+
+Padrino.activate_app("app_blog").to("/blog")
+Padrino.activate_app("app_website").to("/website")
+
+Padrino.mounted_apps.each do |app|
+  map app.path do
+    app.klass.constantize.set :uri_root, app.path
+    run app.klass.constantize
+  end
 end

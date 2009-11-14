@@ -3,9 +3,16 @@ require 'sinatra/base'
 # Defines our PADRINO_ENV
 PADRINO_ENV = ENV["PADRINO_ENV"] ||= ENV["RACK_ENV"] ||= "development" unless defined?(PADRINO_ENV)
 
-module Padrino
-  
+module Padrino  
   class << self
+    
+    def mounted_apps
+      (@mounted_apps ||= [])
+    end
+    
+    def activate_app(name)
+      MountedApp.new(self, name)
+    end
     
     def boot!
       
@@ -52,10 +59,24 @@ module Padrino
     end
   end
   
+  class MountedApp
+    attr_accessor :name, :path, :klass
+    def initialize(parent, name)
+      @parent = parent
+      @name = name
+      @klass = name.classify
+    end
+    
+    def to(mount_url)
+      @path = mount_url
+      @parent.mounted_apps << self
+    end
+  end
+  
   class Application < Sinatra::Base    
     def self.inherited(base)
       # Defines basic application settings
-      base.set :app_name, base.to_s.underscore
+      base.set :app_name, base.to_s.underscore.to_sym
       base.set :app_file, Padrino.root("#{base.app_name}/app.rb")
       base.set :images_path, base.public + "/images"
       base.set :default_builder, 'StandardFormBuilder'
