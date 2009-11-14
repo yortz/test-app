@@ -24,7 +24,7 @@ module Padrino
         require root('/../vendor', 'gems', PADRINO_ENV)
         puts ">> We use bundled gems"
       rescue LoadError => e
-        puts ">> We use system wide gems"
+        puts ">> No bundled gems, using system wide gems..."
       end
     
       # Attempts to load all necessary dependencies
