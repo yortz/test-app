@@ -1,26 +1,29 @@
-require 'padrino/delegator'
-
 module Padrino
   class Application < Sinatra::Base
-
-    class Controllers < Delegator; end
-    class Urls < Delegator; end
-
     class << self
+      def inherited(base)
+        base.default_configuration!
+        super # Loading the class
+        base.register_initializers
+        base.register_framework
+        base.require_load_paths
+      end
 
+      # Makes the routes defined in the block and in the Modules given
+      # in `extensions` available to the application
       def controllers(*extensions, &block)
-        @controllers.instance_eval(&block)       if block_given?
-        @controllers.send(:include, *extensions) if extensions.any?
+        instance_eval(&block) if block_given?
+        include(*extensions) if extensions.any?
       end
 
+      # Makes the urls defined in the block and in the Modules given
+      # in `extensions` available to the application
       def urls(*extensions, &block)
-        @urls.instance_eval(&block)       if block_given?
-        @urls.send(:include, *extensions) if extensions.any?
+        instance_eval(&block) if block_given?
+        include(*extensions) if extensions.any?
       end
-
-      def load_paths
-        @load_paths ||= ["models/*.rb", "urls.rb", "controllers/*.rb", "helpers/*.rb"]
-      end
+      
+      protected
 
       # Defines basic application settings
       def default_configuration!
@@ -49,32 +52,22 @@ module Padrino
         end
       end
 
+      # Includes all necessary sinatra_more helpers if required
       def register_framework
-        # Includes all necessary sinatra_more helpers if required
         register SinatraMore::MarkupPlugin  if markup?
         register SinatraMore::RenderPlugin  if render?
         register SinatraMore::MailerPlugin  if mailer?
         register SinatraMore::RoutingPlugin if router?
       end
 
-      def require_application_files
-        instance_variable_set(:@controllers, Controllers.new)
-        instance_variable_set(:@urls, Urls.new)
-        [ # We delegate certain methods to our controller
-          :get, :put, :post, :delete, :head, :template, :layout,
-          :before, :after, :error, :not_found, :mime_type, :map,
-          :development?, :test?, :production?, :use_in_file_templates!, :helpers
-          ].each { |method_name| instance_variable_get(:@controllers).delegate(method_name).to(self) }
-        instance_variable_get(:@urls).delegate(:map).to(self)
-        load_paths.each { |path|  Padrino.load_dependencies(File.join(self.root, path)) }
+      # Returns the load_paths for the application relative to the application root
+      def load_paths
+        @load_paths ||= ["models/*.rb", "urls.rb", "controllers/*.rb", "helpers/*.rb"]
       end
 
-      def inherited(base)
-        base.default_configuration!
-        super # Loading the class
-        base.register_initializers
-        base.register_framework
-        base.require_application_files
+      # Require all files within the application's load paths
+      def require_load_paths
+        load_paths.each { |path|  Padrino.load_dependencies(File.join(self.root, path)) }
       end
     end
   end
