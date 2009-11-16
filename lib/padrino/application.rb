@@ -1,11 +1,13 @@
 module Padrino
-  class Application < Sinatra::Base
+  # Subclasses of this become independent Padrino applications (stemming from Sinatra::Application)
+  # These subclassed applications can be easily mounted into other Padrino applications as well.
+  class Application < Sinatra::Application
     class << self
       def inherited(base)
         base.default_configuration!
         super # Loading the class
         base.register_initializers
-        base.register_framework
+        base.register_framework_plugins
         base.require_load_paths
       end
 
@@ -27,18 +29,21 @@ module Padrino
 
       # Defines basic application settings
       def default_configuration!
+        # Overwriting Sinatra defaults
+        set :raise_errors, true if development?
+        set :sessions, true
+        set :logging, true
+        # Padrino specific
         set :app_name, self.to_s.underscore.to_sym
         set :app_file, Padrino.root("#{self.app_name}/app.rb")
+        set :environment, PADRINO_ENV.to_sym
         set :images_path, self.public + "/images"
         set :default_builder, 'StandardFormBuilder'
-        set :environment, PADRINO_ENV
-        set :environment, PADRINO_ENV.to_sym
-        set :raise_errors, true if development?
-        set :logging, true
-        set :markup, true
-        set :render, true
-        set :mailer, true
-        set :router, true
+        # Extensions specific
+        enable :markup_plugin
+        enable :render_plugin
+        enable :mailer_plugin
+        enable :router_plugin
       end
 
       # Requires the middleware and initializer modules which configure specific components
@@ -53,11 +58,11 @@ module Padrino
       end
 
       # Includes all necessary sinatra_more helpers if required
-      def register_framework
-        register SinatraMore::MarkupPlugin  if markup?
-        register SinatraMore::RenderPlugin  if render?
-        register SinatraMore::MailerPlugin  if mailer?
-        register SinatraMore::RoutingPlugin if router?
+      def register_framework_plugins
+        register SinatraMore::MarkupPlugin  if markup_plugin?
+        register SinatraMore::RenderPlugin  if render_plugin?
+        register SinatraMore::MailerPlugin  if mailer_plugin?
+        register SinatraMore::RoutingPlugin if router_plugin?
       end
 
       # Returns the load_paths for the application relative to the application root
