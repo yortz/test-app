@@ -2,6 +2,7 @@ module Padrino
   # Subclasses of this become independent Padrino applications (stemming from Sinatra::Application)
   # These subclassed applications can be easily mounted into other Padrino applications as well.
   class Application < Sinatra::Application
+    
     def logger
       @log_stream ||= self.class.log_to_file? ? Padrino.root("log/#{PADRINO_ENV.downcase}.log") : $stdout
       @logger   ||= Logger.new(@log_stream)
@@ -37,7 +38,7 @@ module Padrino
       end
 
       protected
-
+      
       # Setup the application by registering initializers, load paths and logger
       # Invoked automatically when an application instance is created
       def setup_application!
@@ -62,12 +63,9 @@ module Padrino
         set :environment, PADRINO_ENV.to_sym
         set :images_path, self.public + "/images"
         set :default_builder, 'StandardFormBuilder'
-        set :flash, true
+        enable :flash
         # Plugin specific
-        enable :markup_plugin
-        enable :render_plugin
-        enable :mailer_plugin
-        enable :router_plugin
+        enable :padrino_helpers
       end
 
       # Requires the middleware and initializer modules to configure components
@@ -81,12 +79,10 @@ module Padrino
         end
       end
 
-      # Registers all desired sinatra_more helpers
-      def register_framework_plugins
-        register SinatraMore::MarkupPlugin  if markup_plugin?
-        register SinatraMore::RenderPlugin  if render_plugin?
-        register SinatraMore::MailerPlugin  if mailer_plugin?
-        register SinatraMore::RoutingPlugin if router_plugin?
+      # Registers all desired padrino extension helpers/routing
+      def register_framework_extension
+        register Padrino::Helpers  if padrino_helpers?
+        register Padrino::Routing
       end
 
       # Require all files within the application's load paths
