@@ -8,13 +8,18 @@ module Padrino
     end
 
     class << self
-      def inherited(base)
-        base.default_configuration!
-        super # Loading the class
-        base.register_initializers
-        base.register_framework_plugins
-        base.require_load_paths
-        base.setup_logger
+      def inherited(subclass)
+        subclass.default_configuration!
+        super # Loading the subclass
+      end
+
+      # Hooks into when a new instance of the application is created
+      # This is used because putting the configuration into inherited doesn't
+      # take into account overwritten app settings inside subclassed definitions
+      # Only performs the setup first time application is initialized
+      def new(*args, &bk)
+        setup_application!
+        super
       end
 
       # Makes the routes defined in the block and in the Modules given
@@ -32,6 +37,17 @@ module Padrino
       end
 
       protected
+
+      # Setup the application by registering initializers, load paths and logger
+      # Invoked automatically when an application instance is created
+      def setup_application!
+        return if @configured
+        self.register_initializers
+        self.register_framework_plugins
+        self.require_load_paths
+        self.setup_logger
+        @configured = true
+      end
 
       # Defines default settings for Padrino application
       def default_configuration!

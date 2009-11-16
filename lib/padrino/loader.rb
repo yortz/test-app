@@ -16,7 +16,7 @@ module Padrino
         Dir[path].each { |file| require(file) }
       end
     end
-    
+
     # Attempts to require all dependencies with bundler; if fails, we try to use system wide gems
     def load_required_gems
       begin
