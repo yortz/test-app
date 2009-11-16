@@ -44,7 +44,7 @@ module Padrino
       def setup_application!
         return if @configured
         self.register_initializers
-        self.register_framework_plugins
+        self.register_framework_extensions
         self.require_load_paths
         self.setup_logger
         @configured = true
@@ -80,7 +80,7 @@ module Padrino
       end
 
       # Registers all desired padrino extension helpers/routing
-      def register_framework_extension
+      def register_framework_extensions
         register Padrino::Helpers  if padrino_helpers?
         register Padrino::Routing
       end
