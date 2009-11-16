@@ -27,7 +27,7 @@ module Padrino
       
       protected
 
-      # Defines basic application settings
+      # Defines default settings for Padrino application
       def default_configuration!
         # Overwriting Sinatra defaults
         set :raise_errors, true if development?
@@ -39,17 +39,18 @@ module Padrino
         set :environment, PADRINO_ENV.to_sym
         set :images_path, self.public + "/images"
         set :default_builder, 'StandardFormBuilder'
-        # Extensions specific
+        set :flash, true
+        # Plugin specific
         enable :markup_plugin
         enable :render_plugin
         enable :mailer_plugin
         enable :router_plugin
       end
 
-      # Requires the middleware and initializer modules which configure specific components
+      # Requires the middleware and initializer modules to configure components
       def register_initializers
         use Rack::Session::Cookie
-        use Rack::Flash
+        use Rack::Flash if flash?
         Dir[Padrino.root + '/config/initializers/*.rb'].each do |file|
           Padrino.load_dependencies(file)
           file_class = File.basename(file, '.rb').classify
@@ -57,7 +58,7 @@ module Padrino
         end
       end
 
-      # Includes all necessary sinatra_more helpers if required
+      # Registers all desired sinatra_more helpers
       def register_framework_plugins
         register SinatraMore::MarkupPlugin  if markup_plugin?
         register SinatraMore::RenderPlugin  if render_plugin?
