@@ -10,7 +10,7 @@ module Padrino
       include Padrino::Generators::Actions
       include Padrino::Generators::Components::Actions
 
-      desc "Description:\n\n\tsinatra_gen is the sinatra_more generators which generate or build on Sinatra applications."
+      desc "Description:\n\n\tpadrino-gen generate a Padrino skeleton or application."
 
       argument :name, :desc => "The name of your sinatra app"
       argument :path, :desc => "The path to create your app"
