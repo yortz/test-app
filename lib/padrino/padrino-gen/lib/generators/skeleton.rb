@@ -7,8 +7,8 @@ module Padrino
 
       # Include related modules
       include Thor::Actions
-      include Padrino::GeneratorActions
-      include Padrino::ComponentActions
+      include Padrino::Generators::Actions
+      include Padrino::Generators::Components::Actions
 
       desc "Description:\n\n\tsinatra_gen is the sinatra_more generators which generate or build on Sinatra applications."
 
