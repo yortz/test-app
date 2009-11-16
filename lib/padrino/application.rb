@@ -2,6 +2,11 @@ module Padrino
   # Subclasses of this become independent Padrino applications (stemming from Sinatra::Application)
   # These subclassed applications can be easily mounted into other Padrino applications as well.
   class Application < Sinatra::Application
+    def logger
+      @log_stream ||= self.class.log_to_file? ? Padrino.root("log/#{PADRINO_ENV.downcase}.log") : $stdout
+      @logger   ||= Logger.new(@log_stream)
+    end
+
     class << self
       def inherited(base)
         base.default_configuration!
@@ -9,6 +14,7 @@ module Padrino
         base.register_initializers
         base.register_framework_plugins
         base.require_load_paths
+        base.setup_logger
       end
 
       # Makes the routes defined in the block and in the Modules given
@@ -24,15 +30,16 @@ module Padrino
         instance_eval(&block) if block_given?
         include(*extensions) if extensions.any?
       end
-      
+
       protected
 
       # Defines default settings for Padrino application
       def default_configuration!
         # Overwriting Sinatra defaults
         set :raise_errors, true if development?
-        set :sessions, true
         set :logging, true
+        set :sessions, true
+        enable :log_to_file unless development?
         # Padrino specific
         set :app_name, self.to_s.underscore.to_sym
         set :app_file, Padrino.mounted_root(self.app_name.to_s, "/app.rb")
@@ -66,14 +73,24 @@ module Padrino
         register SinatraMore::RoutingPlugin if router_plugin?
       end
 
-      # Returns the load_paths for the application relative to the application root
-      def load_paths
-        @load_paths ||= ["models/*.rb", "urls.rb", "controllers/*.rb", "helpers/*.rb"]
-      end
-
       # Require all files within the application's load paths
       def require_load_paths
         load_paths.each { |path|  Padrino.load_dependencies(File.join(self.root, path)) }
+      end
+
+      # Creates the log directory and redirects output to file if needed
+      def setup_logger
+        # raise self.log_to_file?.inspect
+        return unless self.log_to_file?
+        FileUtils.mkdir_p 'log' unless File.exists?('log')
+        log = File.new("log/#{PADRINO_ENV.downcase}.log", "a+")
+        $stdout.reopen(log)
+        $stderr.reopen(log)
+      end
+
+      # Returns the load_paths for the application relative to the application root
+      def load_paths
+        @load_paths ||= ["models/*.rb", "urls.rb", "controllers/*.rb", "helpers/*.rb"]
       end
     end
   end

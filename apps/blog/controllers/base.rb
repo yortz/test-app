@@ -1,5 +1,6 @@
 Blog::controllers do
   get :index do
+    logger.info "This is a test"
     session[:test] = "foobar"
     flash[:notice] = "tester"
     [
