@@ -1,7 +1,5 @@
 require 'sinatra/base'
-require 'padrino/loader'
-require 'padrino/mounter'
-require 'padrino/application'
+Dir[File.dirname(__FILE__) + '/padrino-core/**/*.rb'].each {|file| require file }
 
 # Defines our PADRINO_ENV
 PADRINO_ENV = ENV["PADRINO_ENV"] ||= ENV["RACK_ENV"] ||= "development" unless defined?(PADRINO_ENV)
