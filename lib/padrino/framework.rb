@@ -21,8 +21,9 @@ module Padrino
     def application
       Rack::Builder.new do
         Padrino.mounted_apps.each do |app|
-          map app.path do
-            app.klass.constantize.set :uri_root, app.path
+          map app.uri_root do
+            require app.app_file
+            app.klass.constantize.set :uri_root, app.uri_root
             run app.klass.constantize
           end
         end

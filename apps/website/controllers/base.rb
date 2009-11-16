@@ -1,10 +1,10 @@
-AppWebsite::controllers do
+Website::controllers do
   get :index do
     session[:test] = "foobar"
     [
       "Hey? This is the website!!!!", "",
       options.app_name, options.app_file, options.public, options.views, options.images_path,
-      url_for(:app_website, :test), url_for(:test)
+      url_for(:website, :test), url_for(:test)
     ].join("<br />")
   end
 

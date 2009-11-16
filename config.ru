@@ -6,6 +6,6 @@ require File.dirname(__FILE__) + '/config/boot.rb'
 # $stdout.reopen(log)
 # $stderr.reopen(log)
 
-Padrino.mount("app_blog").to("/blog")
-Padrino.mount("app_website").to("/website")
+Padrino.mount("blog").to("/blog")
+Padrino.mount("website").to("/website")
 run Padrino.application

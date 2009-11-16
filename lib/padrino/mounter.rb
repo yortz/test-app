@@ -3,7 +3,7 @@ module Padrino
   # Stores the name of the application (app folder name) and url mount path
   # @example MountedApplication.new("blog_app").to("/blog")
   class MountedApplication
-    attr_accessor :name, :path, :klass
+    attr_accessor :name, :uri_root, :app_file, :klass
     def initialize(name)
       @name = name
       @klass = name.classify
@@ -11,12 +11,18 @@ module Padrino
 
     # registers the mounted application to Padrino
     def to(mount_url)
-      @path = mount_url
+      @app_file = Padrino.mounted_root(name, "app.rb")
+      @uri_root = mount_url
       Padrino.mounted_apps << self
     end
   end
 
   class << self
+    # Returns the root to the mounted apps base directory
+    def mounted_root(*args)
+      File.join(Padrino.root, "apps", *args)
+    end
+
     # Returns the mounted padrino applications (MountedApp objects)
     def mounted_apps
       @mounted_apps ||= []
@@ -25,7 +31,6 @@ module Padrino
     # Mounts a new sub-application onto Padrino
     # @example Padrino.mount("blog_app").to("/blog")
     def mount(name)
-      require File.join(root, name, "app.rb")
       MountedApplication.new(name)
     end
   end

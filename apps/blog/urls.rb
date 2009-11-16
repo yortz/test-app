@@ -1,3 +1,3 @@
-AppBlog::urls do
+Blog::urls do
   map(:index).to("")
 end

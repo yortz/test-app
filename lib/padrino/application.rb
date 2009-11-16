@@ -35,7 +35,7 @@ module Padrino
         set :logging, true
         # Padrino specific
         set :app_name, self.to_s.underscore.to_sym
-        set :app_file, Padrino.root("#{self.app_name}/app.rb")
+        set :app_file, Padrino.mounted_root(self.app_name.to_s, "/app.rb")
         set :environment, PADRINO_ENV.to_sym
         set :images_path, self.public + "/images"
         set :default_builder, 'StandardFormBuilder'

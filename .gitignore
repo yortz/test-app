@@ -2,4 +2,4 @@
 tmp/**/*
 log/**/*
 bin/**/*
-vendor/**/*
+vendor/gems/**/*
