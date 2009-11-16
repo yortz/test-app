@@ -8,10 +8,4 @@ require File.dirname(__FILE__) + '/config/boot.rb'
 
 Padrino.mount("app_blog").to("/blog")
 Padrino.mount("app_website").to("/website")
-
-Padrino.mounted_apps.each do |app|
-  map app.path do
-    app.klass.constantize.set :uri_root, app.path
-    run app.klass.constantize
-  end
-end
+run Padrino.application
