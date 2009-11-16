@@ -13,7 +13,7 @@ module Padrino
         base.default_configuration!
         super # Loading the class
         base.register_initializers
-        base.register_framework_plugins
+        base.register_framework_extension
         base.require_load_paths
         base.setup_logger
       end
@@ -47,7 +47,7 @@ module Padrino
         set :environment, PADRINO_ENV.to_sym
         set :images_path, self.public + "/images"
         set :default_builder, 'StandardFormBuilder'
-        set :flash, true
+        enable :flash
         # Plugin specific
         enable :padrino_helpers
       end
@@ -63,10 +63,10 @@ module Padrino
         end
       end
 
-      # Registers all desired sinatra_more helpers
-      def register_framework_plugins
+      # Registers all desired padrino extension helpers/routing
+      def register_framework_extension
         register Padrino::Helpers  if padrino_helpers?
-        register Padrino::Routing::Helpers
+        register Padrino::Routing
       end
 
       # Require all files within the application's load paths
