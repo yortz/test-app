@@ -39,7 +39,7 @@ module Padrino
         set :raise_errors, true if development?
         set :logging, true
         set :sessions, true
-        enable :log_to_file unless development?
+        set :log_to_file, !development?
         # Padrino specific
         set :app_name, self.to_s.underscore.to_sym
         set :app_file, Padrino.mounted_root(self.app_name.to_s, "/app.rb")
@@ -80,7 +80,6 @@ module Padrino
 
       # Creates the log directory and redirects output to file if needed
       def setup_logger
-        # raise self.log_to_file?.inspect
         return unless self.log_to_file?
         FileUtils.mkdir_p 'log' unless File.exists?('log')
         log = File.new("log/#{PADRINO_ENV.downcase}.log", "a+")
