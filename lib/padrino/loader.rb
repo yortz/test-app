@@ -30,9 +30,9 @@ module Padrino
 
       begin
         require root('/../vendor', 'gems', PADRINO_ENV)
-        puts ">> Using bundled gems..."
+        puts ">> Using bundled gems"
       rescue LoadError => e
-        puts ">> No bundled gems, using system wide gems..."
+        puts ">> Using system wide gems (No bundled gems)"
       end
     end
   end
