@@ -6,7 +6,7 @@ TODO
   $ padrino-gen project project_name
   $ cd project_name
   $ padrino-gen app app_name
-* Create padrino-core padrino file for tasks (start, stop, test, console)
-* Decide what to do about initializers
-* Figure out where to work in WardenPlugin
-* Finish sinatra-cache
+* Implement padrino-core padrino file for tasks (start, stop, test, console)
+* Decide what to do about initializers (where do they go single app, multiple apps)
+* Figure out where to work in the WardenPlugin
+* Finish sinatra-cache plugin
