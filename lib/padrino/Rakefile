@@ -5,8 +5,8 @@ include FileUtils
 
 gems = [
   "padrino-core",
-  # "padrino-cache",
-  # "padrino-admin",
+  "padrino-cache",
+  "padrino-admin",
   "padrino-gen",
   "padrino-helpers",
   "padrino-mailer",
@@ -26,6 +26,6 @@ end
 require 'rake/testtask'
 Rake::TestTask.new(:test) do |test|
   test.libs << 'lib' << 'test'
-  test.pattern = 'padrino-**/test/**/test_*.rb'
+  test.pattern = 'padrino-*/test/**/test_*.rb'
   test.verbose = true
 end
