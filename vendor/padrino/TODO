@@ -12,8 +12,9 @@ TODO
 * Finish sinatra-cache gem
 * Finish sinatra-admin gem
 * Add helpers to helpers gem:
-  * http://github.com/rails/rails/blob/master/actionpack/lib/action_view/helpers/ajax_helper.rb
+  * ajax helpers (http://github.com/rails/rails/blob/master/actionpack/lib/action_view/helpers/ajax_helper.rb)
 * Fix documentation (README, wiki) for each gem (overview in padrino and standalone usage in each subgem)
+* Move the mounting process (for multiple apps) to use rack-mount (http://github.com/josh/rack-mount)
 
 COMPLETED
 
