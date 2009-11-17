@@ -23,6 +23,13 @@ gems = [
   end
 end
 
+desc "Bump patch version and release all padrino gems"
+task :publish do
+  gems.each do |dir|
+    Dir.chdir(dir) { sh "#{Gem.ruby} -S rake version:bump:patch release" }
+  end
+end
+
 require 'rake/testtask'
 Rake::TestTask.new(:test) do |test|
   test.libs << 'lib' << 'test'
