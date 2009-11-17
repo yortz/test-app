@@ -1,7 +1,0 @@
-= padrino-core
-
-Description goes here.
-
-== Copyright
-
-Copyright (c) 2009 Padrino. See LICENSE for details.

@@ -1,1 +1,0 @@
-Dir[File.dirname(__FILE__) + "/generators/**/*.rb"].each { |lib| require lib }
