@@ -1,3 +1,9 @@
+[submodule "lib/padrino/padrino-admin"]
+	path = lib/padrino/padrino-admin
+	url = git@github.com:padrino/padrino-admin.git
+[submodule "lib/padrino/padrino-cache"]
+	path = lib/padrino/padrino-cache
+	url = git@github.com:padrino/padrino-cache.git
 [submodule "lib/padrino/padrino-core"]
 	path = lib/padrino/padrino-core
 	url = git@github.com:padrino/padrino-core.git
