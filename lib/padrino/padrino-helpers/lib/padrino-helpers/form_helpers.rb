@@ -186,7 +186,7 @@ module Padrino
       def configured_form_builder_class(explicit_builder=nil)
         default_builder = self.respond_to?(:options) && self.options.default_builder
         configured_builder = explicit_builder || default_builder || 'StandardFormBuilder'
-        configured_builder = configured_builder.constantize if configured_builder.is_a?(String)
+        configured_builder = "Padrino::Helpers::FormBuilder::#{configured_builder}".constantize if configured_builder.is_a?(String)
         configured_builder
       end
     end

@@ -4,7 +4,7 @@ This is the abstract class that other mailers will inherit from in order to send
 
 You can set the default delivery settings through:
 
-  Padrino::MailerBase.smtp_settings = {
+  Padrino::Mailer::Base.smtp_settings = {
     :host   => 'smtp.yourserver.com',
     :port   => '25',
     :user   => 'user',

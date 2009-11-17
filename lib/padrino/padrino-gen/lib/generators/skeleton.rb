@@ -1,3 +1,5 @@
+require 'thor'
+
 module Padrino
   module Generators
     class Skeleton < Thor::Group

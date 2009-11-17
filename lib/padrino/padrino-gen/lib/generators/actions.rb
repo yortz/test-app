@@ -36,7 +36,7 @@ module Padrino
       # Returns the related module for a given component and option
       # generator_module_for('rr', :mock)
       def generator_module_for(choice, component)
-        "Padrino::#{choice.to_s.capitalize}#{component.to_s.capitalize}Gen".constantize
+        "Padrino::Generators::Components::#{component.to_s.capitalize.pluralize}::#{choice.to_s.capitalize}Gen".constantize
       end
 
       # Creates a component_config file at the destination containing all component options
@@ -60,6 +60,7 @@ module Padrino
         # Also builds the available_choices hash of which component choices are supported
         # component_option :test, "Testing framework", :aliases => '-t', :choices => [:bacon, :shoulda]
         def component_option(name, caption, options = {})
+          (@component_types ||= []) << name
           (@available_choices ||= Hash.new({}))[name] = options[:choices]
           description = "The #{caption} component (#{options[:choices].join(', ')})"
           class_option name, :default => options[:choices].first, :aliases => options[:aliases], :desc => description
@@ -67,7 +68,7 @@ module Padrino
 
         # Returns the compiled list of component types which can be specified
         def component_types
-          @available_choices.keys
+          @component_types
         end
 
         # Returns the list of available choices for the given component (including none)

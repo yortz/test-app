@@ -1,11 +1,12 @@
 TODO
 
-* Move each gem over to Jeweler
 * Move tests into split gems
-* Decide what to do about initializers
+* Add tests for padrino_core
 * Fix generators and project to import concept-app changes (base_app, etc)
   $ padrino-gen project project_name
   $ cd project_name
   $ padrino-gen app app_name
 * Create padrino-core padrino file for tasks (start, stop, test, console)
+* Decide what to do about initializers
+* Figure out where to work in WardenPlugin
 * Finish sinatra-cache

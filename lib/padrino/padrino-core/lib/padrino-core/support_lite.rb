@@ -1,4 +1,4 @@
-# This is for adding specific methods that are required by sinatra_more if activesupport isn't required
+# This is for adding specific methods that are required by padrino if activesupport isn't required
 unless String.method_defined?(:titleize) && Hash.method_defined?(:slice)
   require 'active_support/inflector'
   require 'active_support/core_ext/blank'

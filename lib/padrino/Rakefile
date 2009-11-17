@@ -6,6 +6,7 @@ include FileUtils
 gems = [
   "padrino-core",
   # "padrino-cache",
+  # "padrino-admin",
   "padrino-gen",
   "padrino-helpers",
   "padrino-mailer",
@@ -13,11 +14,18 @@ gems = [
   "padrino"
 ]
 
-%w(clean install uninstall gemspec package release).each do |task_name|
+%w(clean install gemspec build release).each do |task_name|
   desc "Run #{task_name} for all projects"
   task task_name do
     gems.each do |dir|
       Dir.chdir(dir) { sh "#{Gem.ruby} -S rake #{task_name}" }
     end
   end
+end
+
+require 'rake/testtask'
+Rake::TestTask.new(:test) do |test|
+  test.libs << 'lib' << 'test'
+  test.pattern = 'padrino-**/test/**/test_*.rb'
+  test.verbose = true
 end

@@ -2,4 +2,4 @@
 
 Padrino is the godfather of Sinatra.
 
-More info cooming soon
+More info coming soon

@@ -1,13 +1,18 @@
 require 'rubygems'
 require 'net/smtp'
+begin
+  require 'smtp_tls'
+rescue LoadError
+end
+require 'base64'
 require 'tmail'
 
 module Padrino
   module Mailer
     module Delivery
-    
+
       class << self
-        
+
         def mail(options)
           raise(ArgumentError, ":to is required") unless options[:to]
 
@@ -26,9 +31,18 @@ module Padrino
         def build_tmail(options)
           mail = TMail::Mail.new
           mail.to = options[:to]
-          mail.from = options[:from] || 'padrino@unknown'
+          mail.from = options[:from] || 'pony@unknown'
           mail.subject = options[:subject]
           mail.body = options[:body] || ""
+          mail.set_content_type 'text', options[:type] || 'plain', {'charset'=> options[:charset] || 'utf-8'}
+          (options[:attachments] || []).each do |name, body|
+            attachment = TMail::Mail.new
+            attachment.transfer_encoding = "base64"
+            attachment.body = Base64.encode64(body)
+            # attachment.set_content_type # TODO: if necessary
+            attachment.set_content_disposition "attachment", "filename" => name
+            mail.parts.push attachment
+          end
           mail
         end
 
@@ -62,6 +76,10 @@ module Padrino
           default_options = {:smtp => { :host => 'localhost', :port => '25', :domain => 'localhost.localdomain' }}
           o = default_options[:smtp].merge(options[:smtp])
           smtp = Net::SMTP.new(o[:host], o[:port])
+          if o[:tls]
+            raise "You may need: gem install smtp_tls" unless smtp.respond_to?(:enable_starttls)
+            smtp.enable_starttls
+          end
           if o.include?(:auth)
             smtp.start(o[:domain], o[:user], o[:password], o[:auth])
           else
@@ -74,4 +92,3 @@ module Padrino
     end
   end
 end
-    
