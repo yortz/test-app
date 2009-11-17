@@ -13,3 +13,6 @@
 [submodule "lib/padrino/padrino-gen"]
 	path = lib/padrino/padrino-gen
 	url = git@github.com:padrino/padrino-gen.git
+[submodule "lib/padrino/padrino"]
+	path = lib/padrino/padrino
+	url = git@github.com:padrino/padrino-framework.git
