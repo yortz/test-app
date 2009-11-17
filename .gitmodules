@@ -1,0 +1,15 @@
+[submodule "lib/padrino/padrino-core"]
+	path = lib/padrino/padrino-core
+	url = git@github.com:padrino/padrino-core.git
+[submodule "lib/padrino/padrino-routing"]
+	path = lib/padrino/padrino-routing
+	url = git@github.com:padrino/padrino-routing.git
+[submodule "lib/padrino/padrino-mailer"]
+	path = lib/padrino/padrino-mailer
+	url = git@github.com:padrino/padrino-mailer.git
+[submodule "lib/padrino/padrino-helpers"]
+	path = lib/padrino/padrino-helpers
+	url = git@github.com:padrino/padrino-helpers.git
+[submodule "lib/padrino/padrino-gen"]
+	path = lib/padrino/padrino-gen
+	url = git@github.com:padrino/padrino-gen.git
