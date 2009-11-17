@@ -1,24 +1,24 @@
-[submodule "lib/padrino/padrino-admin"]
-	path = lib/padrino/padrino-admin
+[submodule "vendor/padrino/padrino-admin"]
+	path = vendor/padrino/padrino-admin
 	url = git@github.com:padrino/padrino-admin.git
-[submodule "lib/padrino/padrino-cache"]
-	path = lib/padrino/padrino-cache
+[submodule "vendor/padrino/padrino-cache"]
+	path = vendor/padrino/padrino-cache
 	url = git@github.com:padrino/padrino-cache.git
-[submodule "lib/padrino/padrino-core"]
-	path = lib/padrino/padrino-core
+[submodule "vendor/padrino/padrino-core"]
+	path = vendor/padrino/padrino-core
 	url = git@github.com:padrino/padrino-core.git
-[submodule "lib/padrino/padrino-routing"]
-	path = lib/padrino/padrino-routing
+[submodule "vendor/padrino/padrino-routing"]
+	path = vendor/padrino/padrino-routing
 	url = git@github.com:padrino/padrino-routing.git
-[submodule "lib/padrino/padrino-mailer"]
-	path = lib/padrino/padrino-mailer
+[submodule "vendor/padrino/padrino-mailer"]
+	path = vendor/padrino/padrino-mailer
 	url = git@github.com:padrino/padrino-mailer.git
-[submodule "lib/padrino/padrino-helpers"]
-	path = lib/padrino/padrino-helpers
+[submodule "vendor/padrino/padrino-helpers"]
+	path = vendor/padrino/padrino-helpers
 	url = git@github.com:padrino/padrino-helpers.git
-[submodule "lib/padrino/padrino-gen"]
-	path = lib/padrino/padrino-gen
+[submodule "vendor/padrino/padrino-gen"]
+	path = vendor/padrino/padrino-gen
 	url = git@github.com:padrino/padrino-gen.git
-[submodule "lib/padrino/padrino"]
-	path = lib/padrino/padrino
+[submodule "vendor/padrino/padrino"]
+	path = vendor/padrino/padrino
 	url = git@github.com:padrino/padrino-framework.git
