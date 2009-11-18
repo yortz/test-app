@@ -5,4 +5,8 @@ Blog::controllers :demo do
     flash[:notice] = "bar!"
     haml_template 'index'
   end
+  
+  get :other, :map => "/other/:id" do
+    "hello world with id #{params[:id]}" + "<br/>url: " + url_for(:demo, :other, :id => 5)
+  end
 end
