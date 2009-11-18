@@ -22,3 +22,6 @@
 [submodule "vendor/padrino/padrino"]
 	path = vendor/padrino/padrino
 	url = git@github.com:padrino/padrino-framework.git
+[submodule "vendor/padrino"]
+	path = vendor/padrino
+	url = git@github.com:padrino/padrino-framework.git
