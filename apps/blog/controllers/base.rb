@@ -1,4 +1,4 @@
-Blog::controllers do
+Blog::controllers :demo do
   get :index do
     logger.info "This is a test"
     session[:test] = "foo!"

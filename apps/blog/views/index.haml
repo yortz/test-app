@@ -20,10 +20,10 @@
   = options.images_path
 %p 
   %span url_for(:blog, :index): 
-  = url_for(:blog, :index)
+  = url_for(:blog, :demo, :index)
 %p 
   %span url_for(:index): 
-  = url_for(:index)
+  = url_for(:demo, :index)
 %p 
   %span User.inspect: 
   = User.inspect

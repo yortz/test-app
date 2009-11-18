@@ -1,3 +1,5 @@
 Blog::urls do
-  map(:index).to("")
+  map :demo do |demo|
+    demo.map(:index).to("")
+  end
 end
