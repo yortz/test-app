@@ -1,4 +1,4 @@
-Website::controllers do
+Website.controllers do
   get :index do
     session[:test] = "foobar"
     haml_template 'index'
