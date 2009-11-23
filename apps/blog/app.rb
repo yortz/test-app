@@ -7,7 +7,7 @@ class Blog < Padrino::Application
     "wine"
   end
   
-  get :tester, :map => '/test' do
-    "This raises a large error"
+  get :tester, :map => '/tester' do
+    "This don't raises a large error"
   end
 end
