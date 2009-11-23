@@ -2,6 +2,6 @@
 
 Blog.controllers do
   get '/another' do
-    "This is /blog/another"
+    "This is /blog/another!"
   end
 end
