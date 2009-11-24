@@ -1,0 +1,8 @@
+- @title = "Sample Padrino Blog"
+
+%h2 Create Post
+
+- form_for @post, url_for(:posts, :create), :class => 'new-post' do |f|
+  = f.text_field_block :title
+  = f.text_area_block :body
+  = f.submit_block "Create"

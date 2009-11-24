@@ -9,6 +9,7 @@ gem 'rack-flash'
 gem 'haml'
 gem 'dm-core'
 gem 'dm-validations'
+gem 'dm-timestamps'
 
 # Testing requirements
 gem 'mocha', :env => :testing

@@ -1,0 +1,6 @@
+- @title = "Sample Blog"
+
+.post
+  .title= @post.title
+  .date=  relative_time_ago(@post.created_at || Time.now) + ' ago'
+  .body=  simple_format(@post.body)
