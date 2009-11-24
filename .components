@@ -1,0 +1,6 @@
+--- 
+:renderer: erb
+:test: bacon
+:script: jquery
+:mock: mocha
+:orm: datamapper
