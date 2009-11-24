@@ -6,7 +6,7 @@ gem 'padrino'
 gem 'rack-flash'
 
 # Component requirements
-gem 'erubis'
+gem 'haml'
 gem 'dm-core'
 gem 'dm-validations'
 
