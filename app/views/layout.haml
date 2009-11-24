@@ -1,0 +1,14 @@
+!!! Strict
+%html
+  %head
+    %title= @title
+    = stylesheet_link_tag 'reset', 'application'
+    = javascript_include_tag "jquery.min"
+    = yield_content :include
+  %body
+    #container
+      #header
+        %h1 Sample Blog
+      #main= yield
+      #footer
+        Copyright &copy; 2009-2010 Padrino
