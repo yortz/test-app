@@ -70,11 +70,20 @@ body {
     width: 560px; }
 
 #sidebar {
+  padding: 20px;
   margin-left: 20px;
   float: left;
-  height: 600px;
-  width: 200px;
-  border: 1px solid black; }
+  height: 650px;
+  width: 320px;
+  border: 1px dotted black; }
+  #sidebar p {
+    font-weight: bold;
+    padding-top: 10px;
+    padding-bottom: 12px; }
+  #sidebar ul {
+    margin-left: 20px; }
+    #sidebar ul li {
+      list-style-type: square; }
 
 #footer {
   padding: 30px 10px 10px 10px; }
