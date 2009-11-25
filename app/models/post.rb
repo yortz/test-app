@@ -8,8 +8,12 @@ class Post
   property :body, Text
   property :author_id, Integer
   property :created_at, DateTime
+  property :num_views, Integer
+  
+  has n, :comments
   
   before :save, :generate_permalink
+  before :create, :generate_created_at
   
   def to_param
     self.permalink
@@ -21,7 +25,11 @@ class Post
   
   protected
   
+  def generate_created_at
+    self.created_at = Time.now
+  end
+  
   def generate_permalink
-    self.permalink = self.title.downcase.gsub(/\W/, '_').gsub(/_+/, '_')
+    self.permalink = self.title.downcase.gsub(/\W/, '_').gsub(/_+/, '_').gsub(/_$/, '').gsub(/^_/, '')
   end
 end

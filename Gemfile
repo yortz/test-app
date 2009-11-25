@@ -10,6 +10,7 @@ gem 'haml'
 gem 'dm-core'
 gem 'dm-validations'
 gem 'dm-timestamps'
+gem 'dm-migrations'
 
 # Testing requirements
 gem 'mocha', :env => :testing

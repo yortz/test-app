@@ -1,0 +1,2 @@
+$('.comments .list').append(<%= js_escape_html(partial('comments/comment', :object => @comment)) %>);
+$('.comments .list').children('.comment:last-child').effect('highlight');

@@ -6,6 +6,8 @@ migration 1, :create_posts do
       column(:title, String)
       column(:body, Text)
       column(:author_id, Integer)
+      column(:created_at, DateTime)
+      column(:num_views, Integer)
     end
   end
 

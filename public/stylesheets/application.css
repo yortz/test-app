@@ -2,9 +2,13 @@ body {
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
   font-size: 14px;
   background-color: #E6E0D9; }
+  body a {
+    color: #336699; }
   body h2 {
     padding-bottom: 12px;
     font-weight: bold; }
+  body h3 {
+    padding-bottom: 10px; }
   body pre {
     display: block;
     background-color: #F8F8FF;
@@ -75,6 +79,65 @@ body {
       display: block;
       margin-bottom: 15px;
       margin-top: 2px; }
+    #main .post .body {
+      padding-bottom: 10px; }
+    #main .post .details {
+      border-top: 1px solid #CCCCCC;
+      margin-bottom: 0.25em;
+      padding: 5px 0;
+      overflow: hidden; }
+      #main .post .details .author {
+        float: left;
+        padding-right: 5px;
+        border-right: 1px solid #CCCCCC; }
+      #main .post .details .comments {
+        margin-left: 5px;
+        float: left;
+        width: 200px; }
+  #main #show .author {
+    border-right: none; }
+  #main #show .comments {
+    margin-top: 20px; }
+    #main #show .comments h3 {
+      font-family: "Georgia,Times New Roman,serif";
+      font-size: 1.5em; }
+    #main #show .comments .list {
+      margin-bottom: 10px; }
+      #main #show .comments .list .comment {
+        background-color: #FFFFFF;
+        margin-bottom: 10px; }
+      #main #show .comments .list .meta {
+        overflow: hidden;
+        background-color: #EEEEEE;
+        padding: 5px;
+        margin-bottom: 5px; }
+        #main #show .comments .list .meta .author {
+          float: left;
+          margin-right: 5px; }
+        #main #show .comments .list .meta .time {
+          float: left; }
+      #main #show .comments .list .body {
+        padding: 10px; }
+    #main #show .comments .create form textarea {
+      width: 600px;
+      height: 100px; }
+    #main #show .comments .create form .author {
+      margin-bottom: 10px;
+      overflow: hidden; }
+      #main #show .comments .create form .author > p {
+        width: 200px;
+        float: left; }
+        #main #show .comments .create form .author > p input[type=text] {
+          margin-top: 3px;
+          display: block;
+          width: 185px; }
+        #main #show .comments .create form .author > p:last-child {
+          margin-right: 0; }
+    #main #show .comments .create form .submit input {
+      background-color: #FAFAFA;
+      border: 1px solid #D0D0D0;
+      -moz-border-radius: 5px;
+      font-size: 1.1em; }
   #main form.new-post p {
     padding-bottom: 10px; }
   #main form.new-post input[type=text] {

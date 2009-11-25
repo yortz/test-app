@@ -1,0 +1,8 @@
+- form_for :comment, url_for(:comments, :create, :post_id => @post.to_param), :class => 'remote' do |f|
+  .body
+    = f.text_area :body
+  .author
+    = f.text_field_block :author_name
+    = f.text_field_block :email
+    = f.text_field_block :website
+  .submit= f.submit_block "Submit Comment"
