@@ -2,6 +2,11 @@
 
 #posts  
   = partial('posts/post', :collection => @posts)
-  
+
+.pagers
+  - if @posts.pager.next_page
+    = link_to '&laquo; Older Entries', url_for(:posts, :index, :page => @posts.pager.next_page), :class => 'next'
+  - if @posts.pager.previous_page
+    = link_to 'Newer Entries &raquo;', url_for(:posts, :index, :page => @posts.pager.previous_page), :class => 'prev'
   
 

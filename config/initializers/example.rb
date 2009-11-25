@@ -5,5 +5,6 @@ module ExampleInitializer
   def self.registered(app)
     # Manipulate 'app' here to register components or adjust configuration
     # app.set :example, "foo"
+
   end
 end

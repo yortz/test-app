@@ -4,6 +4,7 @@ source 'http://gemcutter.org'
 gem 'sinatra'
 gem 'padrino'
 gem 'rack-flash'
+gem 'dm-pager'
 
 # Component requirements
 gem 'haml'
