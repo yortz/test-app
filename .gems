@@ -1,0 +1,7 @@
+sinatra
+padrino
+rack-flash
+haml
+dm-core
+dm-validations
+dm-timestamps
