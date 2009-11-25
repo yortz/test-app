@@ -1,0 +1,49 @@
+#about
+  %h2 About This Application
+  %p 
+    This blogging application was created as a demo for the 
+    #{link_to 'Padrino Framework', 'http://github.com/padrino/padrino-framework'}.
+    Padrino provides a range of powerful enhancements onto of the 
+    #{link_to 'Sinatra', 'http://sinatrarb.com'} microframework.
+  %h3 Installation
+  %p
+    To install the padrino framework, simply grab the latest version from gemcutter:
+  %pre $ sudo gem install padrino --source http://gemcutter.org
+  %p 
+    This will install the necessary padrino gems to get you started. 
+    Now you are ready to use this gem to enhance your sinatra projects or to create new Padrino applications.
+  %h3 Overview
+  %p 
+    Padrino supports a number of features to provide a 'full-stack', agnostic framework
+    for web development.
+  %p Here is a small list of what Padrino provides:
+  %ul.bulleted
+    %li <span>Generators:</span>	for creating new padrino applications and controllers, migrations and models
+    %li <span>MultiApps:</span>	Padrino is principally designed for mounting multiple apps at the same time
+    %li <span>Routing:</span>	Full url named route support to avoid hardcoding route url paths
+    %li <span>Tag Helpers:</span>	helpers such as: tag, content_tag, input_tag, ...
+    %li <span>Asset Helpers:</span> helpers such as: link_to, image_tag, javascript_include_tag, ...
+    %li <span>Form Helpers:</span>	with builder support such as: form_tag, form_for, text_field, ...
+    %li <span>Text Helpers:</span>	useful formatting extensions like: relative_time_ago, js_escape_html
+    %li <span>Mailer:</span>	fast, tiny, delivery support for send templating emails
+    %li <span>Admin:</span> an ajax admin that displays your data in beautiful sortable grids.
+  %p
+    Keep in mind, the user will be able to pull in these components seperately 
+    and leave out those that are not required or use them altogether for a comprehensive 
+    upgrade to Sinatra (a full-stack Padrino application).
+    
+  %h3 Usage
+  %p 
+    Padrino is a framework which builds on the existing functionality and Sinatra and provides a variety of 
+    additional tools and helpers to extend the foundation. This README and Padrino documentation in 
+    general will focus on the enhancements to the core Sinatra functionality. To use Padrino, 
+    one should be familiar with the basic usage of Sinatra itself. Resources for Sinatra are listed below:
+
+  %ul.bulleted
+    %li= link_to 'Sinatra Introduction', 'http://www.sinatrarb.com/intro.html'
+    %li= link_to 'Sinatra Book', 'http://www.sinatrarb.com/book.html'
+    %li= link_to 'Sinatra Github Repo', 'http://github.com/sinatra/sinatra'
+  
+  %p 
+    To learn more about the details of using Padrino and how the features extend on Sinatra, checkout
+    the #{link_to 'Padrino README', 'http://github.com/padrino/padrino-framework/blob/master/README.rdoc'}.
