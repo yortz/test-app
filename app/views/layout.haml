@@ -15,9 +15,10 @@
     #container
       #main= yield
       #sidebar
-        %p 
-          Search:
-          = text_field_tag 'query'
+        - form_tag url_for(:posts, :index), :method => 'get'  do
+          Search for:
+          = text_field_tag 'query', :value => params[:query]
+          = submit_tag 'Search'
         %p Recent Posts
         %ul.bulleted
           %li Item 1 - Lorem ipsum dolorum itsum estem

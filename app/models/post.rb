@@ -15,6 +15,10 @@ class Post
   before :save, :generate_permalink
   before :create, :generate_created_at
   
+  def self.match_query(query)
+   query ? all(:conditions => ["title LIKE ? OR body LIKE ?", "%#{query}%", "%#{query}%"]) : all
+  end
+  
   def to_param
     self.permalink
   end

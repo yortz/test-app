@@ -4,7 +4,7 @@
 Blog.controllers :posts do  
   get :index, :map => '/' do
     logger.info "Beautiful log!"
-    @posts = Post.page params[:page], :order => [:created_at.desc], :per_page => 5
+    @posts = Post.match_query(params[:query]).page params[:page], :order => [:created_at.desc], :per_page => 5
     haml_template 'posts/index'
   end
   
