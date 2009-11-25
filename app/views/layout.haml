@@ -11,7 +11,7 @@
       %ul.menu
         %li= link_to 'Blog', url_for(:posts, :index)
         %li= link_to 'Post', url_for(:posts, :new)
-        %li= link_to 'About'
+        %li= link_to 'About', url_for(:about)
     #container
       #main= yield
       #sidebar
@@ -19,17 +19,17 @@
           Search:
           = text_field_tag 'query'
         %p Recent Posts
-        %ul
+        %ul.bulleted
           %li Item 1 - Lorem ipsum dolorum itsum estem
           %li Item 2 - Lorem ipsum dolorum itsum estem
           %li Item 3 - Lorem ipsum dolorum itsum estem
         %p Categories
-        %ul
+        %ul.bulleted
           %li Item 1 - Lorem ipsum dolorum itsum estem
           %li Item 2 - Lorem ipsum dolorum itsum estem
           %li Item 3 - Lorem ipsum dolorum itsum estem
         %p Latest Comments
-        %ul
+        %ul.bulleted
           %li Item 1 - Lorem ipsum dolorum itsum estem
           %li Item 2 - Lorem ipsum dolorum itsum estem
           %li Item 3 - Lorem ipsum dolorum itsum estem
