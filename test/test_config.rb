@@ -1,6 +1,8 @@
 RACK_ENV = 'test' unless defined?(RACK_ENV)
 require File.dirname(__FILE__) + "/../config/boot"
-Bundler.require_env(:testing)
+
+require 'rack'
+require 'rack/test'
 
 class Bacon::Context
   include Mocha::API
