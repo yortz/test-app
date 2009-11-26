@@ -1,4 +1,4 @@
-RACK_ENV = 'test' unless defined?(RACK_ENV)
+PADRINO_ENV = 'test' unless defined?(PADRINO_ENV)
 require File.dirname(__FILE__) + "/../config/boot"
 
 require 'rack'
@@ -10,5 +10,5 @@ class Bacon::Context
 end
 
 def app
-  Blog.tap { |app| app.set :environment, :test }
+  Padrino.application.tap {}
 end
