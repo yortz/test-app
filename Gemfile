@@ -1,10 +1,11 @@
 clear_sources
 source 'http://gemcutter.org'
+
 # Project requirements
 gem 'sinatra'
-gem 'padrino'
 gem 'rack-flash'
 gem 'dm-pager'
+gem 'padrino-admin'
 
 # Component requirements
 gem 'haml'
