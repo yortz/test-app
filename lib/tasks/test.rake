@@ -1,4 +1,4 @@
 desc 'Demostrate how handle current environment'
-task :env => :environment do
+task :only => :environment do
   puts Padrino.env
 end

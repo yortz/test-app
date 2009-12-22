@@ -15,6 +15,6 @@ gem 'dm-timestamps'
 gem 'dm-migrations'
 
 # Testing requirements
-gem 'mocha', :env => :testing
-gem 'bacon', :env => :testing
+gem 'mocha', :only => :testing
+gem 'bacon', :only => :testing
 gem 'rack-test', :require_as => 'rack/test', :only => :testing
