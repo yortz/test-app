@@ -9,13 +9,13 @@
     #header
       %h1 Sample Padrino Blog
       %ul.menu
-        %li= link_to 'Blog', url_for(:posts, :index)
-        %li= link_to 'Post', url_for(:posts, :new)
-        %li= link_to 'About', url_for(:about)
+        %li= link_to 'Blog', url_for(:frontend, :posts, :index)
+        %li= link_to 'Post', url_for(:frontend, :posts, :new)
+        %li= link_to 'About', url_for(:frontend, :about)
     #container
       #main= yield
       #sidebar
-        - form_tag url_for(:posts, :index), :method => 'get'  do
+        - form_tag url_for(:frontend, :posts, :index), :method => 'get'  do
           Search for:
           = text_field_tag 'query', :value => params[:query]
           = submit_tag 'Search'

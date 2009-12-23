@@ -1,4 +1,4 @@
-- form_for :comment, url_for(:comments, :create, :post_id => @post), :class => 'remote' do |f|
+- form_for :comment, url_for(:frontend, :comments, :create, :post_id => @post), :class => 'remote' do |f|
   .body
     = f.text_area :body
   .author

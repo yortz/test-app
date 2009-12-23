@@ -1,4 +1,4 @@
-Blog.controllers do
+Blog.controllers :frontend do
   get :about, :map => '/about' do
     haml_template 'site/about'
   end

@@ -1,7 +1,7 @@
 # Define your named routes inside config/urls.rb or define them inline
 # You can also use unnamed routes by defining them directly
 
-Blog.controllers :posts do
+Blog.controllers :frontend, :posts do
 
   get :index, :map => '/' do
     logger.info "Beautiful log!"
@@ -17,7 +17,7 @@ Blog.controllers :posts do
   post :create, :map => '/posts' do
     @post = Post.new(params[:post])
     if @post.save
-      redirect url_for(:posts, :index)
+      redirect url_for(:frontend, :posts, :index)
     else
       haml_template 'posts/new'
     end
