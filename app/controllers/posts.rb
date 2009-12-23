@@ -2,16 +2,16 @@
 # You can also use unnamed routes by defining them directly
 
 Blog.controllers :frontend, :posts do
-
+  
   get :index, :map => '/' do
     logger.info "Beautiful log!"
     @posts = Post.match_query(params[:query]).page params[:page], :order => [:created_at.desc], :per_page => 5
-    haml_template 'posts/index'
+    haml :'posts/index'
   end
   
   get :new, :map => '/posts/new' do
     @post = Post.new
-    haml_template 'posts/new'
+    haml :'posts/new'
   end
   
   post :create, :map => '/posts' do
@@ -19,13 +19,13 @@ Blog.controllers :frontend, :posts do
     if @post.save
       redirect url_for(:frontend, :posts, :index)
     else
-      haml_template 'posts/new'
+      haml :'posts/new'
     end
   end
   
   get :show, :map => '/post/:id' do
     @post = Post.from_param(params[:id])
-    haml_template 'posts/show'
+    haml :'posts/show'
   end
   
   delete :destroy, :map => '/post/:id' do
