@@ -6,12 +6,12 @@ Blog.controllers :frontend, :posts do
   get :index, :map => '/' do
     logger.info "Beautiful log!"
     @posts = Post.match_query(params[:query]).page params[:page], :order => [:created_at.desc], :per_page => 5
-    haml :'posts/index'
+    render 'posts/index'
   end
   
   get :new, :map => '/posts/new' do
     @post = Post.new
-    haml :'posts/new'
+    render 'posts/new'
   end
   
   post :create, :map => '/posts' do
@@ -19,13 +19,13 @@ Blog.controllers :frontend, :posts do
     if @post.save
       redirect url_for(:frontend, :posts, :index)
     else
-      haml :'posts/new'
+      render 'posts/new'
     end
   end
   
   get :show, :map => '/post/:id' do
     @post = Post.from_param(params[:id])
-    haml :'posts/show'
+    render 'posts/show'
   end
   
   delete :destroy, :map => '/post/:id' do

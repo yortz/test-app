@@ -6,7 +6,7 @@ Blog.controllers :frontend, :comments do
     @post = Post.from_param(params[:post_id])
     @comment = @post.comments.new(params[:comment])
     if @comment.save
-      erb_template 'comments/create.js'
+      render 'comments/create.js'
     end
   end
 end
