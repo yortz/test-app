@@ -4,7 +4,7 @@
 Blog.controllers :frontend, :posts do
   
   get :index, :map => '/' do
-    logger.info "Beautiful log!"
+    logger.info "The locale is #{I18n.locale} and the app locale is #{options.locale}"
     @posts = Post.match_query(params[:query]).page params[:page], :order => [:created_at.desc], :per_page => 5
     render 'posts/index'
   end
