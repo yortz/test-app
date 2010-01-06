@@ -6,5 +6,11 @@ class Admin < Padrino::Application
     # set :reload, false       # Reload application files (default in development)
     # disable :padrino_helpers # Disables padrino markup helpers (enabled by default)
     # disable :flash           # Disables rack-flash (enabled by default)
+    layout false
+    enable :authentication
+    set :use_orm, :data_mapper
+    access_control.roles_for :any do |role|
+      role.allow ""
+    end
   end
 end

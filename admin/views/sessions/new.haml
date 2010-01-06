@@ -1,0 +1,26 @@
+!!!
+%html
+  %head
+    %title="Welcome to #{options.app_name}"
+    =stylesheet_link_tag "login"
+  %body
+    #wrapper
+      #login-box
+        #content
+          -form_tag url_for(:sessions, :create), :method => :post do
+            %h2 Login in to Admin Panel
+            .field 
+              Email:
+              .ln=text_field_tag :email, :value => params[:email], :style => "width:250px"
+            .field
+              Password:
+              .ln=password_field_tag :password, :value => params[:password], :style => "width:250px"
+            .align-right.bottom.borderd
+              .left=flash[:notice]
+              .right=image_submit_tag("../images/backend/btn-login.png")
+              .clear
+      #copyright
+        Powered by 
+        =link_to "Padrino", "http://github.com/padrino/padrino-framework", :target => :_blank
+        v.
+        =Padrino.version

@@ -1,7 +1,6 @@
 class Post
   include DataMapper::Resource
 
-  # property <name>, <type>
   property :id,       Serial
   property :permalink, String
   property :title, String

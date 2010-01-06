@@ -18,4 +18,5 @@ class Comment
   def generate_created_at
     self.created_at = Time.now
   end
+  
 end
