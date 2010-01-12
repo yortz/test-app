@@ -5,14 +5,13 @@ source 'http://gemcutter.org'
 gem 'sinatra'
 gem 'rack-flash'
 gem 'dm-pager'
-gem 'padrino-admin'
 
 # Component requirements
 gem 'haml'
 gem 'dm-core'
 gem 'dm-validations'
 gem 'dm-timestamps'
-gem 'dm-migrations'
+gem 'dm-constraints'
 
 # Testing requirements
 gem 'mocha', :only => :testing

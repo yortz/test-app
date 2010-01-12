@@ -19,3 +19,4 @@ However, the mounted core can be modified as needed:
 # Mounts the core application for this project
 Padrino.mount_core("Blog")
 Padrino.mount("Admin").to("/admin")
+Padrino.mount("Admin").to("/admin")

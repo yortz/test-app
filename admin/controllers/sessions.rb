@@ -1,14 +1,21 @@
 Admin.controllers :sessions do
   
-  get :new, :map => "/" do
+  get :new do
     render "/sessions/new"
   end
-  
+
   post :create do
-    redirect url_for(:sessions, :new)
+    if account = Account.authenticate(params[:email], params[:password])
+      set_current_account(account)
+      redirect url_for(:index)
+    else
+      flash[:notice] = "Login or password wrong."
+      redirect url_for(:sessions_new)
+    end
   end
-  
-  delete :destroy do
+
+  get :destroy do
+    set_current_account(nil)
     render "/sessions/new"
   end
 end

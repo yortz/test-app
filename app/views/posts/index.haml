@@ -1,12 +1,12 @@
 - @title = "Welcome"
 
+=link_to "Test", url_for(:posts_index, :page => @posts.pager.next_page), :class => 'next', :anchor => :test, :target => :_blank
+
 #posts  
-  = partial('posts/post', :collection => @posts)
+  =partial('posts/post', :collection => @posts)
 
 .pagers
-  - if @posts.pager.next_page
-    = link_to '&laquo; Older Entries', url_for(:frontend, :posts, :index, :page => @posts.pager.next_page), :class => 'next'
+  -if @posts.pager.next_page
+    =link_to '&laquo; Older Entries', url_for(:posts_index, :page => @posts.pager.next_page), :class => 'next'
   - if @posts.pager.previous_page
-    = link_to 'Newer Entries &raquo;', url_for(:frontend, :posts, :index, :page => @posts.pager.previous_page), :class => 'prev'
-  
-
+    =link_to 'Newer Entries &raquo;', url_for(:posts_index, :page => @posts.pager.previous_page), :class => 'prev'

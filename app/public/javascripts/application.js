@@ -1,3 +1,3 @@
 $(document).ready(function(){
-  $('form.remote').ajaxForm({ dataType : 'script', clearForm: true });
+  $('form[data-remote=true]').ajaxForm({ dataType : 'script', clearForm: true });
 });

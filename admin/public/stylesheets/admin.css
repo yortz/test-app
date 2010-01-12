@@ -1,10 +1,3 @@
-/*
-* Lipsiasadmin
-* Copyright(c) 2007-2008,LipsiaSoft s.r.l.
-* info@lipsiasoft.com
-* 
-* http://www.lipsiasoft.com
-*/
 a{text-decoration:none;color:#15428b;}
 a:visited{text-decoration:none;color:#15428b;}
 a:hover{text-decoration:none;color:#3764A0;}
@@ -28,24 +21,24 @@ ul.x-tab-strip-top{background:#C4D2E5 none;}
 #action-panel .x-panel-body li{margin:3px;}
 #action-panel .x-panel-body li img{width:16px;height:16px;vertical-align:middle;margin-right:2px;margin-bottom:2px;}
 /*Some Icons for our admin*/
-.preview .x-btn-text{background-image:url(/images/backend/preview.gif);}
-.back .x-btn-text{background-image:url(/images/backend/back.gif);}
-.print .x-btn-text{background-image:url(/images/backend/print.gif);}
-.remove .x-btn-text{background-image:url(/images/backend/delete.gif);}
-.add .x-btn-text{background-image:url(/images/backend/new.gif);}
-.edit .x-btn-text{background-image:url(/images/backend/edit.gif);}
-.save .x-btn-text{background-image:url(/images/backend/save.gif);}
-.duplicate .x-btn-text{background-image:url(/images/backend/duplicate.gif);}
-.export .x-btn-text{background-image:url(/images/backend/export.gif);}
+.preview .x-btn-text{background-image:url(../images/backend/preview.gif);}
+.back .x-btn-text{background-image:url(../images/backend/back.gif);}
+.print .x-btn-text{background-image:url(../images/backend/print.gif);}
+.remove .x-btn-text{background-image:url(../images/backend/delete.gif);}
+.add .x-btn-text{background-image:url(../images/backend/new.gif);}
+.edit .x-btn-text{background-image:url(../images/backend/edit.gif);}
+.save .x-btn-text{background-image:url(../images/backend/save.gif);}
+.duplicate .x-btn-text{background-image:url(../images/backend/duplicate.gif);}
+.export .x-btn-text{background-image:url(../images/backend/export.gif);}
 /*Correlations buttons*/
-.up         .x-btn-text{background-image:url(/images/backend/arrow_up.png);}
-.down       .x-btn-text{background-image:url(/images/backend/arrow_down.png);}
-.join       .x-btn-text{background-image:url(/images/backend/arrow_join.png);}
-.divide     .x-btn-text{background-image:url(/images/backend/arrow_divide.png);}
-.divide     .x-btn-text{background-image:url(/images/backend/arrow_divide.png);}
-.categories .x-btn-text{background-image:url(/images/backend/categories.gif);}
+.up         .x-btn-text{background-image:url(../images/backend/arrow_up.png);}
+.down       .x-btn-text{background-image:url(../images/backend/arrow_down.png);}
+.join       .x-btn-text{background-image:url(../images/backend/arrow_join.png);}
+.divide     .x-btn-text{background-image:url(../images/backend/arrow_divide.png);}
+.divide     .x-btn-text{background-image:url(../images/backend/arrow_divide.png);}
+.categories .x-btn-text{background-image:url(../images/backend/categories.gif);}
 /*Overrite some defaults*/
-.x-panel-header{background-image:url(/images/backend/bg-hd.png);background-color:#6f839a; text-align:center; color:#343f4b;}
+.x-panel-header{background-image:url(../images/backend/bg-hd.png);background-color:#6f839a; text-align:center; color:#343f4b;}
 .x-panel-noborder .x-panel-header-noborder { border-bottom:none; }
 .x-html-editor-wrap{border:none;}
 /*Main Site*/
@@ -53,15 +46,13 @@ ul.x-tab-strip-top{background:#C4D2E5 none;}
 .label-title{padding:5px 0px 0px 0px;color:#3764A0;border-bottom:1px dotted #C4D2E5;padding-bottom:3px;margin:5px 0px 5px 0px;font-size:1.2em;font-weight:bold;}
 .label-image{padding:5px 5px 5px 5px;background-color:#DFE8F6;margin:10px 10px 0px 10px;border:1px solid #99BBE8;}
 .description{padding:10px 0px 5px 0px;font-style:italic;}
-.label-it{padding:5px 0px 5px 20px;background-image:url(/images/backend/it.gif);background-position:left center;background-repeat:no-repeat;}
-.label-en{padding:5px 0px 5px 20px;background-image:url(/images/backend/us.gif);background-position:left center;background-repeat:no-repeat;}
 .list{list-style:decimal;padding:20;}
 .list li{list-style:decimal;padding:0;margin:0;}
 .column{float:left;width:150px;padding-right:10px;}
 .small-w{width:10px;}
 .green{color:green;}
 #ajax-iframe{display:none;}
-#header{height:39px;border:0 none;background:#1E4176 url(/images/backend/hd-bg.gif) repeat-x 0 0;}
+#header{height:39px;border:0 none;background:#1E4176 url(../images/backend/hd-bg.gif) repeat-x 0 0;}
 #header a{text-decoration:none;color:#FFF;}
 #header a:hover{color:#99BBE8;}
 #content-header{background-color:#C4D2E5;padding:5px;color:#3764A0;}
@@ -84,4 +75,4 @@ table.items th{font-weight:bold;background-color:#BFCFE6;color:#15428B;padding:3
 table.items tr.odd td{background-color:#FFF;padding:3px;border-bottom:1px solid #99BBE8}
 table.items tr.even td{background-color:#FFF;padding:3px;border-bottom:1px solid #99BBE8}
 /*Custom Style Here*/
-.attachment-popup{background-color:#FFF;border-top:1px solid #000;background-image:url(/images/backend/bg-content.png); background-repeat: repeat-x;padding:10px;}
+.attachment-popup{background-color:#FFF;border-top:1px solid #000;background-image:url(../images/backend/bg-content.png); background-repeat: repeat-x;padding:10px;}

@@ -1,0 +1,10 @@
+-tab :general do
+  -box :title_and_description, "Write here title and description" do
+    %table.full
+      %tr
+        %td.fixed=f.label :title
+        %td=f.text_field :title
+      %tr
+        %td{:colspan=>2}
+          =f.label :body
+          =f.text_area :body, :style => "height:300px"

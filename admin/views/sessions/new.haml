@@ -1,13 +1,13 @@
 !!!
 %html
   %head
-    %title="Welcome to #{options.app_name}"
-    =stylesheet_link_tag "login"
+    %title="Welcome to #{options.app_name.titleize}"
+    =stylesheet_link_tag "standard", "login"
   %body
     #wrapper
       #login-box
         #content
-          -form_tag url_for(:sessions, :create), :method => :post do
+          -form_tag url_for(:sessions_create) do
             %h2 Login in to Admin Panel
             .field 
               Email:
@@ -15,7 +15,7 @@
             .field
               Password:
               .ln=password_field_tag :password, :value => params[:password], :style => "width:250px"
-            .align-right.bottom.borderd
+            .padding-top.bottom
               .left=flash[:notice]
               .right=image_submit_tag("../images/backend/btn-login.png")
               .clear

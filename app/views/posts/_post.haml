@@ -1,7 +1,7 @@
 .post
-  .title= link_to post.title, url_for(:frontend, :posts, :show, :id => post)
-  .date=  time_ago_in_words(post.created_at || Time.now) + ' ago'
-  .body=  simple_format(post.body)
+  .title=link_to post.title, url_for(:posts_show, :id => post)
+  .date=time_ago_in_words(post.created_at || Time.now) + ' ago'
+  .body=simple_format(post.body)
   .details
     .author Posted by Padrino Team
-    .comments= link_to "#{pluralize(post.comments.size, "comment")} posted", url_for(:frontend, :posts, :show, :id => post)
+    .comments=link_to "#{pluralize(post.comments.size, "comment")} posted", url_for(:posts_show, :id => post)

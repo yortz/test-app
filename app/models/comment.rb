@@ -2,21 +2,12 @@ class Comment
   include DataMapper::Resource
 
   property :id,          Serial
-  property :post_id,     Integer
-  property :author_name, String
-  property :email,       String
+  property :post_id,     Integer, :required => true
+  property :author_name, String,  :required => true
+  property :email,       String,  :format => :email_address
   property :website,     String
-  property :body,        Text
-  property :created_at,  DateTime
-  
+  property :body,        Text,    :required => true
+  timestamps :created_at
+
   belongs_to :post
-  
-  before :create, :generate_created_at
-  
-  protected
-  
-  def generate_created_at
-    self.created_at = Time.now
-  end
-  
 end
