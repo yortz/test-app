@@ -5,6 +5,6 @@ PADRINO_ROOT = File.dirname(__FILE__) + '/..' unless defined? PADRINO_ROOT
 Dir[PADRINO_ROOT + "/vendor/padrino/**/lib"].each do |gem|
   $LOAD_PATH.unshift gem
 end
-require 'extlib'
+
 require 'padrino'
 Padrino.load!
