@@ -4,7 +4,7 @@ Admin.controllers :posts do
     @store = Post.column_store(options.views, "posts/store")
     case content_type
       when :js    then render 'posts/grid.js'
-      when :json  then @store.store_data(params)
+      when :json  then @store.store_data(params, :links => [Post.relationships[:account].inverse])
     end
   end
 
