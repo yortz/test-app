@@ -9,7 +9,6 @@ class Admin < Padrino::Application
     layout false
     enable  :authentication
     disable :store_location
-    set :use_orm, :datamapper
     set :login_page, "/admin/sessions/new"
 
     access_control.roles_for :any do |role|
@@ -17,6 +16,7 @@ class Admin < Padrino::Application
     end
 
     access_control.roles_for :admin do |role, account|
+
       role.allow "/"
 
       role.project_module :accounts do |project|
@@ -34,7 +34,8 @@ class Admin < Padrino::Application
         project.menu :new,  "/admin/comments/new"
       end
 
-      # Put before other permissions [don't delete this line!!!]
+      role.project_module :uploads, "/admin/uploads.js"
+
     end
 
   end

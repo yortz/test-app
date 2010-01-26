@@ -1,0 +1,10 @@
+columns:
+  - method: file.to_s
+    dataIndex: uploads.file
+    header: File
+  - method: size
+    renderer: file_size
+    sortable: false
+    header: Size
+  - method: created_at
+    renderer: datetime

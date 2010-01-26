@@ -17,3 +17,6 @@ gem 'dm-constraints'
 gem 'mocha', :only => :testing
 gem 'bacon', :only => :testing
 gem 'rack-test', :require_as => 'rack/test', :only => :testing
+
+# Uploader requirements
+gem 'carrierwave'

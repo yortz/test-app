@@ -5,4 +5,3 @@ columns:
   - method: website
   - method: body
   - method: created_at
-    renderer: datetime

@@ -4,7 +4,7 @@ Admin.controllers :posts do
     @store = Post.column_store(options.views, "posts/store")
     case content_type
       when :js    then render 'posts/grid.js'
-      when :json  then @store.store_data(params, :links => [Post.relationships[:account].inverse])
+      when :json  then @store.store_data(params)
     end
   end
 
@@ -14,7 +14,7 @@ Admin.controllers :posts do
   end
 
   post :create, :respond_to => :js do
-    @post = Post.create(params[:post].merge(:account_id => current_account.id))
+    @post = current_account.posts.create(params[:post])
     show_messages_for(@post)
   end
 
@@ -30,8 +30,8 @@ Admin.controllers :posts do
   end
 
   delete :destroy, :respond_to => :json do
-    posts  = Post.all(:conditions => { :id => params[:ids].split(",") })
+    posts = Post.all(:conditions => { :id => params[:ids].split(",") })
     errors = posts.map { |post| I18n.t("admin.general.cantDelete", :record => post.id) unless post.destroy }.compact
-    { :success => errors.empty?, :msg => errors.join("<br />") }.to_json
+    render :success => errors.empty?, :msg => errors.join("<br />")
   end
 end

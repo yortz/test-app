@@ -7,7 +7,6 @@ class Post
   property   :body,       Text,   :required => true
   property   :created_at, DateTime
   property   :num_views,  Integer, :default => 0
-  timestamps :created_at
 
   belongs_to :account
   has n, :comments, :constraint => :destroy

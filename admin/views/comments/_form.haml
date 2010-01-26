@@ -1,19 +1,18 @@
--tab :general do
-  -box :write_here_your_comment, "If is necessary ..." do
-    %table.full
-      %tr
-        %td.fixed=f.label :post_id
-        %td=f.select :post_id, :collection => Post.all(:order => :created_at.desc), :fields => [:title, :id]
-      %tr
-        %td=f.label :author_name
-        %td=f.text_field :author_name
-      %tr
-        %td=f.label :email
-        %td=f.text_field :email
-      %tr
-        %td=f.label :website
-        %td=f.text_field :website
-      %tr
-        %td{:colspan => 2}
-          =f.label :body
-          =f.text_area :body, :style => "height:300px"
+-box :here_a_name do
+  %table.full
+    %tr
+      %td.fixed=f.label :post_id
+      %td=f.text_field :post_id
+    %tr
+      %td=f.label :author_name
+      %td=f.text_field :author_name
+    %tr
+      %td=f.label :email
+      %td=f.text_field :email
+    %tr
+      %td=f.label :website
+      %td=f.text_field :website
+    %tr
+      %td{ :colspan => 2 }
+        =f.label :body
+        =f.text_area :body, :style => "width:100%;height:150px"

@@ -1,7 +1,5 @@
 - @title = "Welcome"
 
-=link_to "Test", url_for(:posts_index, :page => @posts.pager.next_page), :class => 'next', :anchor => :test, :target => :_blank
-
 #posts  
   =partial('posts/post', :collection => @posts)
 

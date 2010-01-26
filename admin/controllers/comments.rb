@@ -32,6 +32,6 @@ Admin.controllers :comments do
   delete :destroy, :respond_to => :json do
     comments = Comment.all(:conditions => { :id => params[:ids].split(",") })
     errors = comments.map { |comment| I18n.t("admin.general.cantDelete", :record => comment.id) unless comment.destroy }.compact
-    { :success => errors.empty?, :msg => errors.join("<br />") }.to_json
+    render :success => errors.empty?, :msg => errors.join("<br />")
   end
 end
