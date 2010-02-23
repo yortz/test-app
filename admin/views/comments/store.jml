@@ -1,0 +1,7 @@
+columns:
+  - method: post_id
+  - method: author_name
+  - method: email
+  - method: website
+  - method: body
+  - method: created_at

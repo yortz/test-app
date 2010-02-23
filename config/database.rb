@@ -1,10 +1,15 @@
-module DatabaseSetup
-  def self.registered(app)
-    app.configure { DataMapper.logger = logger }
-    app.configure(:development) { DataMapper.setup(:default, "sqlite3://" + Padrino.root('db', "blog_#{Padrino.env.to_s}.db")) }
-    app.configure(:production)  { DataMapper.setup(:default, "sqlite3://" + Padrino.root('db', "blog_#{Padrino.env.to_s}.db")) }
-    app.configure(:test)        { DataMapper.setup(:default, "sqlite3://" + Padrino.root('db', "blog_#{Padrino.env.to_s}.db")) }
-  rescue ArgumentError => e
-    logger.error "Database options need to be configured within 'config/database.rb'!" if app.logging?
-  end
+##
+# A MySQL connection:
+# DataMapper.setup(:default, 'mysql://user:password@localhost/the_database_name')
+#
+# # A Postgres connection:
+# DataMapper.setup(:default, 'postgres://user:password@localhost/the_database_name')
+#
+
+DataMapper.logger = logger
+
+case Padrino.env
+  when :development then DataMapper.setup(:default, "sqlite3://" + Padrino.root('db', "development.db"))
+  when :production  then DataMapper.setup(:default, "sqlite3://" + Padrino.root('db', "production.db"))
+  when :test        then DataMapper.setup(:default, "sqlite3://" + Padrino.root('db', "test.db"))
 end

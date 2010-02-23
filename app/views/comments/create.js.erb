@@ -1,2 +1,6 @@
-$('.comments .list').append(<%= js_escape_html(partial('comments/comment', :object => @comment)) %>);
-$('.comments .list').children('.comment:last-child').effect('highlight');
+<% if @comment.valid? %>
+  $('.comments .list').append(<%= js_escape_html(partial('comments/comment', :object => @comment)) %>);
+  $('.comments .list').children('.comment:last-child').effect('highlight');
+<% else %>
+  $('#errors').html(<%= js_escape_html(error_messages_for(:comment)) %>)
+<% end %>

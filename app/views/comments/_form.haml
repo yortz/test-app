@@ -1,8 +1,9 @@
-- form_for :comment, url_for(:comments, :create, :post_id => @post), :class => 'remote' do |f|
+-form_for :comment, url_for(:comments_create, :post_id => @post, :format => :js), :remote => true do |f|
+  #errors
   .body
-    = f.text_area :body
+    =f.text_area :body
   .author
-    = f.text_field_block :author_name
-    = f.text_field_block :email
-    = f.text_field_block :website
-  .submit= f.submit_block "Submit Comment"
+    =f.text_field_block :author_name
+    =f.text_field_block :email
+    =f.text_field_block :website
+  .submit=f.submit_block "Submit Comment"

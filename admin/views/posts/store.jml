@@ -1,0 +1,9 @@
+columns:
+  - method: permalink
+  - method: title
+  - method: created_at
+    renderer: datetime
+  - method: account.name
+    header: Author
+    sortable: false
+  - method: num_views

@@ -3,7 +3,7 @@ PADRINO_ROOT = File.dirname(__FILE__) + '/..' unless defined? PADRINO_ROOT
 
 # At the moment we load it from lib
 Dir[PADRINO_ROOT + "/vendor/padrino/**/lib"].each do |gem|
-  $LOAD_PATH.unshift gem
+  $:.unshift gem
 end
 
 require 'padrino'

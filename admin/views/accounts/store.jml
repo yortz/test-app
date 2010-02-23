@@ -1,0 +1,7 @@
+columns:
+  - method: name
+  - method: surname
+  - method: email
+    header: E-mail
+    sortable: false
+  - method: role

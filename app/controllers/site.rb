@@ -1,5 +1,5 @@
 Blog.controllers do
   get :about, :map => '/about' do
-    haml_template 'site/about'
+    render 'site/about'
   end
 end

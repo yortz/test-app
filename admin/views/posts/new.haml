@@ -1,0 +1,3 @@
+=title "New posts"
+-form_for @post, url(:posts_create, :format => :js), :remote => true do |f|
+  =partial 'posts/form', :locals => { :f => f }

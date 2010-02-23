@@ -1,0 +1,9 @@
+-box :put_here_your_post do
+  %table.full
+    %tr
+      %td.fixed=f.label :title
+      %td=f.text_field :title
+    %tr
+      %td{ :colspan => 2 }
+        =f.label :body
+        =f.text_area :body, :style => "width:100%;height:200px"

@@ -1,0 +1,3 @@
+=title "Edit Comment"
+-form_for @comment, url(:comments_update, :id => @comment.id, :format => :js), :method => :put, :remote => true do |f|
+  =partial 'comments/form', :locals => { :f => f }

@@ -1,17 +1,17 @@
-- @title = "#{@post.title}"
+-@title = "#{@post.title}"
 
 #show
   .post
-    .title= @post.title
-    .date=  relative_time_ago(@post.created_at || Time.now) + ' ago'
-    .body=  simple_format(@post.body)
+    .title=@post.title
+    .date=time_ago_in_words(@post.created_at || Time.now) + ' ago'
+    .body=simple_format(@post.body)
     .details
       .author Posted by Padrino Team
     .comments
-      - if @post.comments.size > 0
-        %h3 #{pluralize(@post.comments.size, "comment")} posted
-      .list= partial('comments/comment', :collection => @post.comments)
+      -if @post.comments.size > 0
+        %h3=pluralize(@post.comments.size, "comment") + "posted"
+      .list=partial('comments/comment', :collection => @post.comments)
       .create
         %h3 Post a new comment
-        = partial('comments/form')
+        =partial('comments/form')
     
