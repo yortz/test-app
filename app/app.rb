@@ -1,4 +1,6 @@
 class Blog < Padrino::Application
+  register SassInitializer
+  
   configure do
     layout :custom
     # Application-specific configuration options
