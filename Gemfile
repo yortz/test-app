@@ -1,22 +1,20 @@
-clear_sources
-source 'http://gemcutter.org'
+source :gemcutter
 
 # Project requirements
-gem 'sinatra'
 gem 'rack-flash'
-gem 'dm-pager'
+# Uploader requirements
+gem 'usher'
+gem 'mini_magick'
+gem 'carrierwave'
 
 # Component requirements
 gem 'haml'
-gem 'dm-core'
-gem 'dm-validations'
-gem 'dm-timestamps'
-gem 'dm-constraints'
+gem 'data_objects'
+gem 'do_sqlite3'
+gem 'datamapper'
+gem 'dm-pager'
 
 # Testing requirements
-gem 'mocha', :only => :testing
-gem 'bacon', :only => :testing
-gem 'rack-test', :require_as => 'rack/test', :only => :testing
-
-# Uploader requirements
-gem 'carrierwave'
+gem 'mocha', :group => :testing
+gem 'bacon', :group => :testing
+gem 'rack-test', :require => 'rack/test', :group => :testing
